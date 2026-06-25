@@ -1,0 +1,63 @@
+.categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.category {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: border-color var(--transition);
+}
+
+.category:hover {
+  border-color: var(--accent);
+}
+
+.catName {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.skillList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.skillHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.skillName {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.skillLevel {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.barTrack {
+  height: 8px;
+  background: rgba(108, 99, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  background: var(--gradient-1);
+  border-radius: 4px;
+}

@@ -1,0 +1,133 @@
+.wrap {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.meshGradient {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(108, 99, 255, 0.18), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(224, 64, 251, 0.12), transparent 38%),
+    radial-gradient(circle at 70% 80%, rgba(0, 212, 170, 0.12), transparent 40%),
+    radial-gradient(circle at 25% 85%, rgba(108, 99, 255, 0.1), transparent 40%);
+  filter: blur(40px);
+  animation: drift 22s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(3%, -2%, 0) scale(1.08) rotate(4deg);
+  }
+  100% {
+    transform: translate3d(-3%, 2%, 0) scale(1.04) rotate(-3deg);
+  }
+}
+
+/* Floating 3D wireframe cubes */
+.cube {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  transform-style: preserve-3d;
+  opacity: 0.5;
+}
+
+.cubeA {
+  top: 18%;
+  right: 12%;
+  animation: spin3d 18s linear infinite, float 9s ease-in-out infinite alternate;
+}
+
+.cubeB {
+  width: 50px;
+  height: 50px;
+  bottom: 16%;
+  left: 10%;
+  animation: spin3dRev 22s linear infinite, float 11s ease-in-out infinite alternate;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(108, 99, 255, 0.4);
+  background: rgba(108, 99, 255, 0.04);
+}
+
+.cubeB .face {
+  border-color: rgba(0, 212, 170, 0.4);
+  background: rgba(0, 212, 170, 0.04);
+}
+
+/* Floating glowing rings */
+.ring3d {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  opacity: 0.35;
+}
+
+.ringA {
+  width: 160px;
+  height: 160px;
+  top: 60%;
+  right: 8%;
+  border-top-color: rgba(108, 99, 255, 0.5);
+  border-right-color: rgba(0, 212, 170, 0.4);
+  animation: spinFlat 14s linear infinite, float 8s ease-in-out infinite alternate;
+}
+
+.ringB {
+  width: 110px;
+  height: 110px;
+  top: 30%;
+  left: 6%;
+  border-bottom-color: rgba(224, 64, 251, 0.5);
+  border-left-color: rgba(108, 99, 255, 0.4);
+  animation: spinFlat 18s linear infinite reverse, float 10s ease-in-out infinite alternate;
+}
+
+@keyframes spin3d {
+  to { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+@keyframes spin3dRev {
+  to { transform: rotateX(-360deg) rotateY(360deg); }
+}
+
+@keyframes spinFlat {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  to { margin-top: -24px; }
+}
+
+@media (max-width: 768px) {
+  .cube,
+  .ring3d {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meshGradient,
+  .cube,
+  .ring3d {
+    animation: none;
+  }
+}
