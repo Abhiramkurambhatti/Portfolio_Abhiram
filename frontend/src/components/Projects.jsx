@@ -80,14 +80,25 @@ export default function Projects() {
             transition={{ duration: 0.5, delay: i * 0.12 }}
           >
             <div className={styles.imageWrap}>
-              <img src={project.image} alt={project.title} loading="lazy" />
+              <img
+                src={project.image}
+                alt={project.title}
+                loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                }}
+              />
               <div className={styles.overlay}>
-                <a href={project.github} target="_blank" rel="noreferrer" aria-label="GitHub">
-                  <FiGithub size={20} />
-                </a>
-                <a href={project.live} target="_blank" rel="noreferrer" aria-label="Live demo">
-                  <FiExternalLink size={20} />
-                </a>
+                {project.github && (
+                  <a href={project.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+                    <FiGithub size={20} />
+                  </a>
+                )}
+                {project.live && project.live !== "#" && (
+                  <a href={project.live} target="_blank" rel="noreferrer" aria-label="Live demo">
+                    <FiExternalLink size={20} />
+                  </a>
+                )}
               </div>
             </div>
             <div className={styles.body}>

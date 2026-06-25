@@ -4,10 +4,9 @@ import socket
 import ssl
 from email.message import EmailMessage
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, EmailStr
-from datetime import date
+from pydantic import BaseModel
 
 try:
     from dotenv import load_dotenv
@@ -25,9 +24,17 @@ CONTACT_RECIPIENT = os.getenv("CONTACT_RECIPIENT", "abhiramkurambhatti@gmail.com
 
 app = FastAPI(title="Portfolio API")
 
+# Comma-separated list of allowed origins. In production set ALLOWED_ORIGINS
+# to your deployed frontend URL, e.g. "https://abhiram.dev".
+ALLOWED_ORIGINS = [
+    o.strip()
+    for o in os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
+    if o.strip()
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -187,7 +194,7 @@ async def get_blog_post(post_id: int):
     for post in BLOG_POSTS:
         if post.id == post_id:
             return post
-    return {"error": "Post not found"}
+    raise HTTPException(status_code=404, detail="Post not found")
 
 
 def send_contact_email(msg: ContactMessage) -> None:
@@ -305,4 +312,6 @@ async def get_skills():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+
+    # Pass the app as an import string so reload works correctly.
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
