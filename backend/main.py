@@ -118,6 +118,15 @@ PROJECTS: list[Project] = [
         github="https://github.com/Abhiramkurambhatti",
         live="#",
     ),
+    Project(
+        id=5,
+        title="AI Knowledge Assistant (RAG)",
+        description="A full Retrieval-Augmented Generation app: upload PDFs and documents, then ask questions in natural language and get answers grounded strictly in your content with cited sources. Text is chunked, embedded, and stored in a vector database for semantic retrieval.",
+        tech=["Python", "FastAPI", "React", "ChromaDB", "RAG", "OpenAI API"],
+        image="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600",
+        github="https://github.com/Abhiramkurambhatti",
+        live="#",
+    ),
 ]
 
 EXPERIENCES: list[Experience] = [
