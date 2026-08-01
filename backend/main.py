@@ -135,7 +135,7 @@ PROJECTS: List[Project] = [
         description="A real-time, WebSocket-based multiplayer game backend and frontend using FastAPI and HTML5 Canvas, featuring room management, state synchronization, and low-latency physics calculations.",
         tech=["FastAPI", "Python", "WebSockets", "HTML5 Canvas", "React"],
         image="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600",
-        github="https://github.com/Abhiramkurambhatti/fastapi-multiplayer-game",
+        github="https://github.com/Abhiramkurambhatti",
         live="#",
     ),
 ]
