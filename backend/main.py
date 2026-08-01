@@ -1,8 +1,10 @@
+from __future__ import annotations
 import os
 import smtplib
 import socket
 import ssl
 from email.message import EmailMessage
+from typing import List, Dict
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -54,7 +56,7 @@ class Project(BaseModel):
     id: int
     title: str
     description: str
-    tech: list[str]
+    tech: List[str]
     image: str
     github: str
     live: str
@@ -66,7 +68,7 @@ class Experience(BaseModel):
     company: str
     period: str
     description: str
-    tech: list[str]
+    tech: List[str]
 
 
 class BlogPost(BaseModel):
@@ -75,13 +77,13 @@ class BlogPost(BaseModel):
     excerpt: str
     content: str
     date: str
-    tags: list[str]
+    tags: List[str]
     read_time: str
 
 
 # ── Sample Data ─────────────────────────────────────────────────────────────
 
-PROJECTS: list[Project] = [
+PROJECTS: List[Project] = [
     Project(
         id=1,
         title="Legacy ETL Modernization",
@@ -127,9 +129,18 @@ PROJECTS: list[Project] = [
         github="https://github.com/Abhiramkurambhatti",
         live="#",
     ),
+    Project(
+        id=6,
+        title="FastAPI Multiplayer Arcade Game",
+        description="A real-time, WebSocket-based multiplayer game backend and frontend using FastAPI and HTML5 Canvas, featuring room management, state synchronization, and low-latency physics calculations.",
+        tech=["FastAPI", "Python", "WebSockets", "HTML5 Canvas", "React"],
+        image="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600",
+        github="https://github.com/Abhiramkurambhatti/fastapi-multiplayer-game",
+        live="#",
+    ),
 ]
 
-EXPERIENCES: list[Experience] = [
+EXPERIENCES: List[Experience] = [
     Experience(
         id=1,
         role="Associate Software Developer",
@@ -148,7 +159,7 @@ EXPERIENCES: list[Experience] = [
     ),
 ]
 
-BLOG_POSTS: list[BlogPost] = [
+BLOG_POSTS: List[BlogPost] = [
     BlogPost(
         id=1,
         title="Modernizing Legacy ETL Pipelines with Python & Kestra",
@@ -178,22 +189,22 @@ BLOG_POSTS: list[BlogPost] = [
     ),
 ]
 
-messages_store: list[dict] = []
+messages_store: List[Dict] = []
 
 
 # ── Routes ──────────────────────────────────────────────────────────────────
 
-@app.get("/api/projects", response_model=list[Project])
+@app.get("/api/projects", response_model=List[Project])
 async def get_projects():
     return PROJECTS
 
 
-@app.get("/api/experience", response_model=list[Experience])
+@app.get("/api/experience", response_model=List[Experience])
 async def get_experience():
     return EXPERIENCES
 
 
-@app.get("/api/blog", response_model=list[BlogPost])
+@app.get("/api/blog", response_model=List[BlogPost])
 async def get_blog_posts():
     return BLOG_POSTS
 

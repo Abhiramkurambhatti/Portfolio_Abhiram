@@ -25,9 +25,9 @@ export const knowledgeBase = [
   },
   {
     id: "projects",
-    keywords: ["project", "projects", "built", "build", "made", "created", "work sample", "etl", "dashboard", "automation", "ticket", "pipeline"],
+    keywords: ["project", "projects", "built", "build", "made", "created", "work sample", "etl", "dashboard", "automation", "ticket", "pipeline", "game", "rag"],
     answer:
-      "Some of Abhiram's key projects:\n• Legacy ETL Modernization — Python, Kestra, Docker\n• Automation Ticket Processing System — FastAPI, Kubernetes\n• SDLC Best Practices Dashboard — Python, Power BI\n• Disaster Recovery Reporting Pipeline — Python, Kafka, AWS\n\nCheck the Projects section above for details!",
+      "Some of Abhiram's key projects:\n• Legacy ETL Modernization — Python, Kestra, Docker\n• Automation Ticket Processing System — FastAPI, Kubernetes\n• SDLC Best Practices Dashboard — Python, Power BI\n• Disaster Recovery Reporting Pipeline — Python, Kafka, AWS\n• AI Knowledge Assistant (RAG) — Python, FastAPI, React, ChromaDB\n• FastAPI Multiplayer Arcade Game — FastAPI, Python, WebSockets\n\nCheck the Projects section above for details!",
   },
   {
     id: "education",
